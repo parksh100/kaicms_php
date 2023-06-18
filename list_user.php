@@ -44,7 +44,7 @@
                    // db connection
                     $servername = "localhost";
                     $username = "root";
-                    $password ="";
+                    $password ="root";
                     $dbname = "kaicms";
 
                     $conn = new mysqli($servername, $username, $password, $dbname);

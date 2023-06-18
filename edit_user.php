@@ -12,7 +12,7 @@
  // db connection
 $servername = "localhost";
 $username = "root";
-$password ="";
+$password ="root";
 $dbname = "kaicms";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -48,7 +48,7 @@ function submitForm() {
 </head>
 
 <body>
-    <form id="myForm" action="edit_user.php" method="post">
+    <form id="myForm" action="edit_all.php?user_id=<?=$user_id?>" method="post">
         <div class="container mt-5">
             <h3 class="mb-4 fw-bold text-center">심사원정보수정</h3>
             <hr />

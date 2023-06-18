@@ -29,26 +29,28 @@ echo "<br>";
 // db connection
 $servername = "localhost";
 $username = "root";
-$password ="";
+$password ="root";
 $dbname = "kaicms";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // check connection
-if(!$conn){
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully" . "<br>";
 
-$sql = "INSERT INTO user (user_name, user_email, user_pwd, user_role, user_ohsms_iaf_code, user_qms_iaf_code, user_ems_iaf_code) VALUES ('$name', '$email', '$pwd', '$role', '$ohsms_iaf_code_string', '$qms_iaf_code_string', '$ems_iaf_code_string')";
+// Prepare and bind the SQL statement using prepared statements
+$sql = "INSERT INTO user (user_name, user_email, user_pwd, user_role, user_ohsms_iaf_code, user_qms_iaf_code, user_ems_iaf_code) VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssssss", $name, $email, $pwd, $role, $ohsms_iaf_code_string, $qms_iaf_code_string, $ems_iaf_code_string);
+$stmt->execute();
 
-mysqli_query($conn, $sql);
-
-mysqli_close($conn);
-
+$stmt->close();
+$conn->close();
 echo "<script>
 alert('회원가입이 완료되었습니다.');
-location.href='index.php';
+location.href='list_user.php';
 </script>"
 
 ?>
