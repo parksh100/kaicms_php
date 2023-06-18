@@ -190,10 +190,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">설계/개발 인원 수</label>
-                <div class="col-sm-9">
-                    <input type="number" class="form-control" placeholder="설계/개발 인원 수" name="dev_employee_count" />
+            <div id="employee-count-row">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">설계/개발 인원 수</label>
+                    <div class="col-sm-9">
+                        <div>
+                            <input type="number" class="form-control" placeholder="설계/개발 인원 수"
+                                name="dev_employee_count" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -469,10 +474,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">적용제외 조항/근거</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="exclusion_reason" />
+            <div id="exclusion_reason-row">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">적용제외 조항/근거</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="exclusion_reason" />
+                    </div>
                 </div>
             </div>
 

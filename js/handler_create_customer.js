@@ -82,3 +82,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }).open();
   });
 });
+
+// 연구개발 여부에 따른 표시
+window.onload = function () {
+  // 라디오 버튼을 선택하면 함수가 호출됩니다.
+  document.getElementsByName("dev").forEach(function (elem) {
+    elem.addEventListener("change", function () {
+      var employeeCountRow = document.querySelector("#employee-count-row");
+
+      // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
+      if (this.value === "yes") {
+        employeeCountRow.style.display = "block";
+      } else {
+        employeeCountRow.style.display = "none";
+      }
+    });
+  });
+
+  // 페이지가 로드될 때 인원수 항목을 숨깁니다.
+  document.querySelector("#employee-count-row").style.display = "none";
+};
+
+// 적용제외 여부에 따른 표시
+window.onload = function () {
+  // 라디오 버튼을 선택하면 함수가 호출됩니다.
+  document.getElementsByName("exclusion").forEach(function (elem) {
+    elem.addEventListener("change", function () {
+      var exclusionReasonRow = document.querySelector("#exclusion_reason-row");
+
+      // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
+      if (this.value === "yes") {
+        exclusionReasonRow.style.display = "block";
+      } else {
+        exclusionReasonRow.style.display = "none";
+      }
+    });
+  });
+
+  // 페이지가 로드될 때 인원수 항목을 숨깁니다.
+  document.querySelector("#exclusion_reason-row").style.display = "none";
+};

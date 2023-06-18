@@ -127,8 +127,9 @@
     }
     echo "Connected successfully";
     
-    $sql = "INSERT INTO customer (ctype, name_ko, name_en, biz_no, ceo, ceo_mobile, ceo_email, phone )
-             values ('$ctype', '$name_ko', '$name_en', '$biz_no', '$ceo', '$ceo_mobile', '$ceo_email', '$phone')";
+    $sql = "INSERT INTO customer (ctype, name_ko, name_en, biz_no, ceo, ceo_mobile, ceo_email, phone, fax, zipcode, addr_ko, addr_ko_detail, addr_en, addr_en_detail, charged_person, charged_person_mobile, charged_person_email, homepage, organize_scope, employee_count)
+     
+             values ('$ctype', '$name_ko', '$name_en', '$biz_no', '$ceo', '$ceo_mobile', '$ceo_email', '$phone','$fax','$zipcode','$addr_ko','$addr_ko_detail','$addr_en','$addr_en_detail','$charged_person', '$charged_person_mobile', '$charged_person_email', '$homepage', '$organize_scope', '$employee_count')";
     $result = mysqli_query($conn, $sql);
 
     if($result){
