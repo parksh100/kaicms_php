@@ -38,7 +38,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">국문상호</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="name_ko" />
+                    <input type="text" class="form-control" name="name_ko" required />
                 </div>
             </div>
             <div class="row mb-3">
@@ -173,7 +173,7 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">종업원 수</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" name="employee_count" />
+                    <input type="text" class="form-control" name="employee_count" />
                 </div>
             </div>
 
@@ -185,7 +185,7 @@
                         <label class="form-check-label" for="design_yes">있음</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="dev" id="design_no" value="No" />
+                        <input class="form-check-input" type="radio" name="dev" id="design_no" value="no" />
                         <label class="form-check-label" for="design_no">없음</label>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                     <label class="col-sm-3 col-form-label">설계/개발 인원 수</label>
                     <div class="col-sm-9">
                         <div>
-                            <input type="number" class="form-control" placeholder="설계/개발 인원 수"
+                            <input type="text" class="form-control" placeholder="설계/개발 인원 수"
                                 name="dev_employee_count" />
                         </div>
                     </div>
@@ -224,30 +224,30 @@
                 <label class="col-sm-3 col-form-label">인증범위 활동</label>
                 <div class="col-sm-9">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="certification_activity[]_1" value="설계개발"
+                        <input class="form-check-input" type="checkbox" id="certification_activity[]_1" value="설계/개발"
                             name="certification_activity[]" />
                         <label class="form-check-label" for="certification_activity[]_1">설계/개발</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="certification_activity[]_2" value="제조생산"
+                        <input class="form-check-input" type="checkbox" id="certification_activity[]_2" value="제조/생산"
                             name="certification_activity[]" />
                         <label class="form-check-label" for="certification_activity[]_2">제조/생산</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="certification_activity[]_3" value="설치시공"
+                        <input class="form-check-input" type="checkbox" id="certification_activity[]_3" value="설치/시공"
                             name="certification_activity[]" />
                         <label class="form-check-label" for="certification_activity[]_3">설치/시공</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="certification_activity[]_4" value="판매"
+                        <input class="form-check-input" type="checkbox" id="certification_activity[]_4" value="판매/서비스"
                             name="certification_activity[]" />
-                        <label class="form-check-label" for="certification_activity[]_4">판매</label>
+                        <label class="form-check-label" for="certification_activity[]_4">판매/서비스</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <!-- <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="certification_activity[]_5" value="서비스"
                             name="certification_activity[]" />
                         <label class="form-check-label" for="certification_activity[]_5">서비스</label>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- 심사코드 -->
@@ -474,7 +474,7 @@
                     </div>
                 </div>
             </div>
-            <div id="exclusion_reason-row">
+            <div id="exclusion_reason_row">
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">적용제외 조항/근거</label>
                     <div class="col-sm-9">
@@ -500,10 +500,12 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">외주처리 프로세스</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="outsourcing_process" placeholder="외주처리 프로세스" />
+            <div id="outsourcingRow">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">외주처리 프로세스</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="outsourcing_process" placeholder="외주처리 프로세스" />
+                    </div>
                 </div>
             </div>
 
@@ -517,15 +519,17 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="construction_license"
-                            id="construction_license_no" value="No" />
+                            id="construction_license_no" value="no" />
                         <label class="form-check-label" for="construction_license_no">없음</label>
                     </div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">건설면허 내용</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="construction_content" placeholder="건설면허 내용" />
+            <div id="construction_content_row">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">건설면허 내용</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="construction_content" placeholder="건설면허 내용" />
+                    </div>
                 </div>
             </div>
 
@@ -548,7 +552,7 @@
                 </ul>
             </div>
             <!-- 이전인증서 첨부 -->
-            <div>
+            <div id="before_cert_row">
                 <div class="row mb-2">
                     <label class="col-sm-3 col-form-label">이전인증서 첨부</label>
                     <div class="col-sm-9">

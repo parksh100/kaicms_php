@@ -4,6 +4,7 @@ function submitCustomerForm() {
     alert("고객구분을 선택해주세요.");
     return false;
   }
+
   document.getElementById("create_customer_form").submit();
 }
 
@@ -93,7 +94,7 @@ window.onload = function () {
       // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
       if (this.value === "yes") {
         employeeCountRow.style.display = "block";
-      } else {
+      } else if (this.value === "no") {
         employeeCountRow.style.display = "none";
       }
     });
@@ -101,14 +102,11 @@ window.onload = function () {
 
   // 페이지가 로드될 때 인원수 항목을 숨깁니다.
   document.querySelector("#employee-count-row").style.display = "none";
-};
 
-// 적용제외 여부에 따른 표시
-window.onload = function () {
-  // 라디오 버튼을 선택하면 함수가 호출됩니다.
+  // 적용제외 여부에 따른 표시
   document.getElementsByName("exclusion").forEach(function (elem) {
     elem.addEventListener("change", function () {
-      var exclusionReasonRow = document.querySelector("#exclusion_reason-row");
+      var exclusionReasonRow = document.querySelector("#exclusion_reason_row");
 
       // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
       if (this.value === "yes") {
@@ -120,5 +118,55 @@ window.onload = function () {
   });
 
   // 페이지가 로드될 때 인원수 항목을 숨깁니다.
-  document.querySelector("#exclusion_reason-row").style.display = "none";
+  document.querySelector("#exclusion_reason_row").style.display = "none";
+
+  // 외주처리 여부에 따른 표시
+  document.getElementsByName("outsourcing").forEach(function (elem) {
+    elem.addEventListener("change", function () {
+      var outsourcingRow = document.querySelector("#outsourcingRow");
+
+      // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
+      if (this.value === "yes") {
+        outsourcingRow.style.display = "block";
+      } else {
+        outsourcingRow.style.display = "none";
+      }
+    });
+  });
+
+  // 페이지가 로드될 때 인원수 항목을 숨깁니다.
+  document.querySelector("#outsourcingRow").style.display = "none";
+
+  // 건설면허 여부에 따른 표시
+  document.getElementsByName("construction_license").forEach(function (elem) {
+    elem.addEventListener("change", function () {
+      var constructRow = document.querySelector("#construction_content_row");
+
+      // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
+      if (this.value === "yes") {
+        constructRow.style.display = "block";
+      } else {
+        constructRow.style.display = "none";
+      }
+    });
+  });
+
+  // 페이지가 로드될 때 인원수 항목을 숨깁니다.
+  document.querySelector("#construction_content_row").style.display = "none";
+
+  // 신규/전환에 따라 이전인증서 표시
+  document.getElementsByName("ctype").forEach(function (elem) {
+    elem.addEventListener("change", function () {
+      var beforeCertRow = document.querySelector("#before_cert_row");
+
+      // '있음'이 선택되면 인원수 항목을 표시하고, '없음'이 선택되면 숨깁니다.
+      if (this.value === "전환") {
+        beforeCertRow.style.display = "block";
+      } else if (this.value === "신규") {
+        beforeCertRow.style.display = "none";
+      }
+    });
+  });
+  // 페이지가 로드될 때 인원수 항목을 숨깁니다.
+  document.querySelector("#before_cert_row").style.display = "none";
 };
