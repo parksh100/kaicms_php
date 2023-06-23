@@ -10,10 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const role = form["role"].value;
     console.log(role);
     const zipcode = form["zip_code"].value;
-    const addr_ko = form["addr_ko"].value;
-    const addr_ko_detail = form["addr_ko_detail"].value;
+    const addr_ko = form["add_ko"].value;
+    const addr_ko_detail = form["add_ko_detail"].value;
+
     // qms_iaf_code checkbox의 값들을 가져오기
-    const qms_iaf_code_checkboxes = form["qms_iaf_code"];
+    const qms_iaf_code_checkboxes = form["qms_iaf_code[]"];
     let qms_iaf_code_values = [];
     for (let i = 0; i < qms_iaf_code_checkboxes.length; i++) {
       if (qms_iaf_code_checkboxes[i].checked) {
@@ -21,6 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    console.log(qms_iaf_code_values); // 선택된 체크박스 값들을 출력
+    console.log(qms_iaf_code_values); // 선택된 체크박스 값들을
   });
 });
