@@ -1,3 +1,19 @@
+<?php
+session_start();
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+echo $_SESSION["name"]. "님 환영합니다.";
+echo "<br>";
+echo $_SESSION["role"];
+echo "<br>";
+echo $_SESSION["id"];
+echo "<br>";
+echo $_SESSION["email"];
+echo "<br>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +68,8 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">사업자등록번호</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="biz_no" maxlength="12" placeholder="번호만 입력" />
+                    <input type="text" class="form-control" name="biz_no" maxlength="12" placeholder="번호만 입력"
+                        oninput="formatBizNo(this)" />
                 </div>
             </div>
             <div class="row mb-3">
@@ -64,25 +81,28 @@
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">대표자 휴대폰번호</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="ceo_mobile" placeholder="번호만 입력" />
+                    <input type="text" class="form-control" name="ceo_mobile" id="ceo_mobile" placeholder="번호만 입력"
+                        maxlength="13" oninput="formatCeoPhone(this)" />
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">대표이메일</label>
                 <div class="col-sm-9">
-                    <input type="text" name="ceo_email" class="form-control" />
+                    <input type="email" name="ceo_email" class="form-control" />
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">대표전화번호</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="phone" placeholder="번호만 입력" maxlength="13" />
+                    <input type="text" class="form-control" name="phone" placeholder="번호만 입력" maxlength="13"
+                        oninput="formatPhone(this)" />
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">대표팩스번호</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="fax" placeholder="번호만 입력" maxlength="13" />
+                    <input type="text" class="form-control" name="fax" placeholder="번호만 입력" maxlength="13"
+                        oninput="formatPhone(this)" />
                 </div>
             </div>
 
@@ -148,7 +168,7 @@
                 <label class="col-sm-3 col-form-label">담당자 휴대번호</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="charged_person_mobile" placeholder="번호만 입력"
-                        maxlength="13" />
+                        maxlength="13" oninput="formatCeoPhone(this)" />
                 </div>
             </div>
             <div class="row mb-3">

@@ -10,7 +10,7 @@ function submitForm() {
 </head>
 
 <body>
-    <form id="myForm" action="insert_user.php" method="post">
+    <form id="myForm" action="insert_user.php" method="post" class="mt-5">
         <div class="container mt-5">
             <h3 class="mb-4 fw-bold text-center">심사원정보등록</h3>
             <hr />

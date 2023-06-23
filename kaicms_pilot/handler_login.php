@@ -48,7 +48,9 @@ if ($result->num_rows > 0) {
       // Store data in session variables
       $_SESSION["loggedin"] = true;
       $_SESSION["id"] = $row["user_id"];
-      $_SESSION["email"] = $email;      
+      $_SESSION["email"] = $email;   
+      $_SESSION["role"] = $row["user_role"];
+      $_SESSION["name"] = $row["user_name"];   
       
      
       echo "<script>

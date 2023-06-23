@@ -110,7 +110,7 @@ body {
 
 
     <main class="form-signin w-100 m-auto">
-        <form name="login_form" action="login_handler.php" method="post">
+        <form name="login_form" action="handler_login.php" method="post">
             <img class="mb-4 mt-5 mx-auto d-block" src="./public/images/kailogo.png" alt="" height="200">
             <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
 

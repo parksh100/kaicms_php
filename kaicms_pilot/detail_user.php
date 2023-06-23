@@ -2,8 +2,29 @@
  include "header.php";
 
 ?>
-
 </head>
+
+<?php
+    // 넘어온 customer_id값이 있다면, 그 값을 이용해서 customer테이블에서 정보를 받아온다.
+    if(isset($_GET['customer_id'])) {
+        $customer_id = $_GET['customer_id'];
+        $sql = "SELECT * FROM customer WHERE customer_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $customer_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $customer = $result->fetch_assoc();
+
+        echo "<script>console.log('customer_id: $customer_id')</script>";
+        echo "<script>console.log('customer: $customer')</script>";
+        
+
+    } else {
+        echo "<script>alert('잘못된 접근입니다.');location.href='list_customer.php';</script>";
+    } 
+
+
+?>
 
 <body>
     <div class="container mt-5">

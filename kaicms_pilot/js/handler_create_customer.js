@@ -170,3 +170,70 @@ window.onload = function () {
   // 페이지가 로드될 때 인원수 항목을 숨깁니다.
   document.querySelector("#before_cert_row").style.display = "none";
 };
+
+// 전화번호 입력시 하이픈 자동 입력
+function formatCeoPhone(input) {
+  var number = input.value.replace(/-/g, "");
+  if (!/^\d+$/.test(number)) {
+    input.value = null;
+  } else {
+    input.value =
+      number.substring(0, 3) +
+      "-" +
+      number.substring(3, 7) +
+      "-" +
+      number.substring(7, 11);
+  }
+}
+
+// 사업자번호 입력시 하이픈 자동 입력
+function formatBizNo(input) {
+  var number = input.value.replace(/-/g, "");
+  if (!/^\d+$/.test(number)) {
+    input.value = null;
+  } else {
+    input.value =
+      number.substring(0, 3) +
+      "-" +
+      number.substring(3, 5) +
+      "-" +
+      number.substring(5, 10);
+  }
+}
+
+// 전화번호 입력시 하이픈 자동 입력
+function formatPhone(input) {
+  var number = input.value.replace(/-/g, "");
+  if (!/^\d+$/.test(number)) {
+    input.value = null;
+  } else {
+    if (number.length == 10) {
+      // e.g. 02-1234-5678
+      input.value =
+        number.substring(0, 2) +
+        "-" +
+        number.substring(2, 6) +
+        "-" +
+        number.substring(6, 10);
+    } else if (number.length == 11) {
+      // e.g. 031-123-4567 or 010-1234-5678
+      if (number.substring(0, 2) == "02") {
+        input.value =
+          number.substring(0, 2) +
+          "-" +
+          number.substring(2, 5) +
+          "-" +
+          number.substring(5, 9);
+      } else {
+        input.value =
+          number.substring(0, 3) +
+          "-" +
+          number.substring(3, 7) +
+          "-" +
+          number.substring(7, 11);
+      }
+    } else {
+      // Handle other cases as needed
+    }
+  }
+}

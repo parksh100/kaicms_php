@@ -1,6 +1,15 @@
 <?php
  include "header.php";
 
+ session_start();
+ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+     // 사용자가 로그인하지 않았으므로 로그인 페이지로 리다이렉트
+     header('Location: login.php');
+     exit();
+ }
+
+ echo "Welcome ". $_SESSION['name']. "<br>";
+
 ?>
 
 
@@ -77,7 +86,7 @@
                     <td class='d-flex'>
                         <li type="button" class="btn btn-success btn-sm me-1" data-bs-toggle="modal"
                             data-bs-target="#auditorModal">
-                            <a href="edit_user.php?user_id=<?=$user_id?>" class="btn btn-success btn-sm">수정</a>
+                            <a href="update_user.php?user_id=<?=$user_id?>" class="btn btn-success btn-sm">수정</a>
                         </li>
                         <button class="btn btn-danger btn-sm me-1" @click="doDelete(item.user_id)">
                             삭제

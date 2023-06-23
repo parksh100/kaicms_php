@@ -1,4 +1,11 @@
 <?php
+    session_start();
+    echo $_SESSION['id'];
+    echo $_SESSION['email'];
+    echo $_SESSION['role'];
+    echo $_SESSION['name'];
+    $user_id = $_SESSION['id'];
+
     $ctype = $_POST['ctype'];
     $name_ko= $_POST['name_ko'];
     $name_en= $_POST['name_en'];
@@ -247,9 +254,9 @@ if($_FILES['biz_letter_file']['error'] >0){
     // $before_cert_file_tmp_name = $_FILES['before_cert_file']['tmp_name'];
 
     
-    $sql = "INSERT INTO customer (ctype, name_ko, name_en, biz_no, ceo, ceo_mobile, ceo_email, phone, fax, zipcode, addr_ko, addr_ko_detail, addr_en, addr_en_detail, charged_person, charged_person_mobile, charged_person_email, homepage, organize_scope, employee_count, dev, dev_employee_count, scope_ko, scope_en, certification_activity, iaf_code, process, exclusion, exclusion_reason, outsourcing, outsourcing_process, construction_license, construction_content, biz_letter_file_tmp_name, biz_letter_file_original_name, biz_letter_file_size, biz_letter_file_type,before_cert_file_tmp_name, before_cert_file_original_name, before_cert_file_size, before_cert_file_type)
+    $sql = "INSERT INTO customer (ctype, name_ko, name_en, biz_no, ceo, ceo_mobile, ceo_email, phone, fax, zipcode, addr_ko, addr_ko_detail, addr_en, addr_en_detail, charged_person, charged_person_mobile, charged_person_email, homepage, organize_scope, employee_count, dev, dev_employee_count, scope_ko, scope_en, certification_activity, iaf_code, process, exclusion, exclusion_reason, outsourcing, outsourcing_process, construction_license, construction_content, biz_letter_file_tmp_name, biz_letter_file_original_name, biz_letter_file_size, biz_letter_file_type,before_cert_file_tmp_name, before_cert_file_original_name, before_cert_file_size, before_cert_file_type, user_id)
      
-             values ('$ctype', '$name_ko', '$name_en', '$biz_no', '$ceo', '$ceo_mobile', '$ceo_email', '$phone','$fax','$zipcode','$addr_ko','$addr_ko_detail','$addr_en','$addr_en_detail','$charged_person', '$charged_person_mobile', '$charged_person_email', '$homepage', '$organize_scope', '$employee_count', '$dev', '$dev_employee_count', '$scope_ko', '$scope_en', '$certification_activity_string', '$iaf_code_string', '$process', '$exclusion', '$exclusion_reason', '$outsourcing', '$outsourcing_process', '$construction_license', '$construction_content', '$biz_letter_file_tmp_name', '$biz_letter_file_original_name', '$biz_letter_file_size', '$biz_letter_file_type', '$before_cert_file_tmp_name', '$before_cert_file_original_name', '$before_cert_file_size', '$before_cert_file_type')";
+             values ('$ctype', '$name_ko', '$name_en', '$biz_no', '$ceo', '$ceo_mobile', '$ceo_email', '$phone','$fax','$zipcode','$addr_ko','$addr_ko_detail','$addr_en','$addr_en_detail','$charged_person', '$charged_person_mobile', '$charged_person_email', '$homepage', '$organize_scope', '$employee_count', '$dev', '$dev_employee_count', '$scope_ko', '$scope_en', '$certification_activity_string', '$iaf_code_string', '$process', '$exclusion', '$exclusion_reason', '$outsourcing', '$outsourcing_process', '$construction_license', '$construction_content', '$biz_letter_file_tmp_name', '$biz_letter_file_original_name', '$biz_letter_file_size', '$biz_letter_file_type', '$before_cert_file_tmp_name', '$before_cert_file_original_name', '$before_cert_file_size', '$before_cert_file_type','$user_id')";
     $result = mysqli_query($conn, $sql);
 
     if($result){
