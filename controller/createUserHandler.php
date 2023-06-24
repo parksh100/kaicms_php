@@ -1,56 +1,76 @@
 <?php
-
+// createUserView.php에서 입력받은 정보를 DB에 저장하는 코드
 $name = $_POST['name'];
-$email = $_POST['email'];
-$pwd = $_POST['pwd'];
-$role = $_POST['role'];
-$ohsms_iaf_code = $_POST['ohsms_iaf_code'];
-$ohsms_iaf_code_string = implode(",", $ohsms_iaf_code);
-$qms_iaf_code = $_POST['qms_iaf_code'];
-$qms_iaf_code_string = implode(",", $qms_iaf_code);
-
-$ems_iaf_code = $_POST['ems_iaf_code'];
-$ems_iaf_code_string = implode(",", $ems_iaf_code);
-
 echo $name. "<br>";
+$email = $_POST['email'];
 echo $email. "<br>";
-echo $pwd. "<br>";
+$password = $_POST['pwd'];
+echo $password. "<br>";
+$role = $_POST['role'];
 echo $role. "<br>";
-
-
-print_r($ohsms_iaf_code_string). "<br>"; // print_r는 줄바꿈이 되지 않음.
+$qms_iaf_code = $_POST['qms_iaf_code'];
+print_r($qms_iaf_code);
 echo "<br>";
-print_r($qms_iaf_code_string). "<br>";
+$ems_iaf_code = $_POST['ems_iaf_code'];
+print_r($ems_iaf_code);
 echo "<br>";
-print_r($ems_iaf_code_string). "<br>";
+$ohsms_iaf_code = $_POST['ohsms_iaf_code'];
+print_r($ohsms_iaf_code);
 echo "<br>";
 
 
-// db connection
-$servername = "localhost";
-$username = "root";
-$password ="root";
-$dbname = "kaicms";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// DB에 저장하는 코드
+$servername = 'localhost';
+$dbuser = 'root';
+$dbpassword = 'root';
+$dbname = 'kaicms';
 
-// check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Create connection with exception handling
+$conn = mysqli_connect($servername, $dbuser, $dbpassword, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully" . "<br>";
 
-// Prepare and bind the SQL statement using prepared statements
-$sql = "INSERT INTO user (user_name, user_email, user_pwd, user_role, user_ohsms_iaf_code, user_qms_iaf_code, user_ems_iaf_code) VALUES (?, ?, ?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssss", $name, $email, $pwd, $role, $ohsms_iaf_code_string, $qms_iaf_code_string, $ems_iaf_code_string);
-$stmt->execute();
+// Use real escape string function for security
+$name = mysqli_real_escape_string($conn, $_POST['name']);
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$password = mysqli_real_escape_string($conn, $_POST['pwd']);
+$role = mysqli_real_escape_string($conn, $_POST['role']);
 
-$stmt->close();
-$conn->close();
-echo "<script>
-alert('회원가입이 완료되었습니다.');
-location.href='list_user.php';
-</script>"
+// Convert checkbox values to JSON and escape string
+$qms_iaf_code = mysqli_real_escape_string($conn, json_encode($_POST['qms_iaf_code']));
+$ems_iaf_code = mysqli_real_escape_string($conn, json_encode($_POST['ems_iaf_code']));
+$ohsms_iaf_code = mysqli_real_escape_string($conn, json_encode($_POST['ohsms_iaf_code']));
+
+// check for email duplication
+$sql = "SELECT * FROM user WHERE user_email='$email'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    // echo "Email already exists";
+echo "<script>alert('이메일이 이미 존재합니다');history.back();</script>";
+   exit();
+}
+
+// Password hashing
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+// Prepare SQL with parameters
+$sql = "INSERT INTO user (user_name, user_email, user_pwd, user_role, user_qms_iaf_code, user_ems_iaf_code, user_ohsms_iaf_code) VALUES ('$name', '$email', '$hashed_password', '$role', '$qms_iaf_code', '$ems_iaf_code', '$ohsms_iaf_code')";
+
+// Try executing this query
+try {
+    mysqli_query($conn, $sql);
+    echo "New records created successfully";
+    header("Location: ../index.php");
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+
+// Close connection
+mysqli_close($conn);
+
 
 ?>

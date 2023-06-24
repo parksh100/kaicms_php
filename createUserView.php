@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
-    <script src="./controller/createUserHandler.js"></script>
 
 </head>
 <style>
@@ -24,26 +23,26 @@ form {
 include 'header.php';
 ?>
 
-    <form id="create_user_form" action="./controller/createUserHandler.php" method="post" class="mb-5">
+    <form name="create_user_form" action="./controller/createUserHandler.php" method="post" class="mb-5">
         <div class="container mt-5">
             <h3 class="mb-4 fw-bold text-center">심사원정보등록</h3>
             <hr />
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">성명</label>
+                <label class="col-sm-3 col-form-label" for="name">성명</label>
                 <div class="col-sm-9">
-                    <input type="text" name="name" class="form-control" />
+                    <input type="text" name="name" id="name" class="form-control" />
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Email</label>
+                <label class="col-sm-3 col-form-label" for="email">Email</label>
                 <div class="col-sm-9">
-                    <input type="email" name="email" class="form-control" placeholder="" />
+                    <input type="email" name="email" class="form-control" id="email" placeholder="" />
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">비밀번호</label>
+                <label class="col-sm-3 col-form-label" for="pwd">비밀번호</label>
                 <div class="col-sm-9">
-                    <input type="text" name="pwd" class="form-control" placeholder="비밀번호를 입력하세요" />
+                    <input type="text" name="pwd" id="pwd" class="form-control" placeholder="비밀번호를 입력하세요" />
                 </div>
             </div>
 
@@ -72,9 +71,9 @@ include 'header.php';
 
             <!--start daum api  -->
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">우편번호</label>
+                <label class="col-sm-3 col-form-label" for="zip_code">우편번호</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="postcode" name="zip_code" />
+                    <input type="text" class="form-control" id="zip_code" name="zip_code" />
                 </div>
                 <div class="col-sm-4">
                     <button class="btn btn-secondary">
@@ -83,20 +82,19 @@ include 'header.php';
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">국문 주소</label>
+                <label class="col-sm-3 col-form-label" for="zip_code">국문 주소</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="address" name="add_ko" />
+                    <input type="text" class="form-control" id="add_ko" name="add_ko" />
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">상세주소</label>
+                <label class="col-sm-3 col-form-label" for="add_ko_detail">상세주소</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="detailAddress" name="add_ko_detail" />
+                    <input type="text" class="form-control" id="add_ko_detail" name="add_ko_detail" />
                 </div>
             </div>
 
-            <!--end daum api  -->
 
             <!-- qms심사가능코드 -->
             <div class="row mb-3">
@@ -806,6 +804,9 @@ include 'header.php';
             </div>
         </div>
     </form>
+    <script src="./controller/createUserHandler.js"></script>
+
+    </script>
 
 </body>
 
